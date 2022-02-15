@@ -1,5 +1,6 @@
 package com.deloitte.readingisgood.service.impl;
 
+import com.deloitte.readingisgood.dto.CustomerDto;
 import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.repository.CustomerRepository;
 import com.deloitte.readingisgood.service.CustomerService;
@@ -19,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository;
 
     @Override
-    public ServiceResponse addCustomer() {
+    public ServiceResponse addCustomer(CustomerDto customerDto) {
         return null;
     }
 

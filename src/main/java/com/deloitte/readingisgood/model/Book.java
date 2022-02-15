@@ -20,6 +20,6 @@ public class Book{
     @Indexed(unique = true)
     private String title;
     private String author;
-    private String about;
+    private String description;
     private BigDecimal price;
 }
