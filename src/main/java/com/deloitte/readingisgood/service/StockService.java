@@ -8,5 +8,11 @@ public interface StockService {
 
     ServiceResponse getStockOfBooks();
 
+    ServiceResponse getStockOfBooks(String bookId);
+
     ServiceResponse addBookToStock(Stock stock);
+
+    boolean updateStockByOrder(String bookId,Integer quantity);
+
+    boolean updateStockByPurchase(String bookId,Integer quantity);
 }

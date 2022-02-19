@@ -5,7 +5,6 @@ import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.dto.StockDto;
 import com.deloitte.readingisgood.model.Book;
 import com.deloitte.readingisgood.model.Stock;
-import com.deloitte.readingisgood.repository.StockRepository;
 import com.deloitte.readingisgood.service.BookService;
 import com.deloitte.readingisgood.service.StockService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +44,7 @@ public class BookController {
     }
 
     @PostMapping()
-    public ResponseEntity<ServiceResponse> addBook(@Valid @RequestBody BookDto bookDto){
+    public ResponseEntity<ServiceResponse> addBook(@RequestBody BookDto bookDto){
         LOG.info("add book started");
 
         ServiceResponse response = bookService.createBook(modelMapper.map(bookDto, Book.class));

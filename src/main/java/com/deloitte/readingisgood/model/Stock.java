@@ -17,4 +17,5 @@ public class Stock{
     @Indexed(unique = true)
     private String bookId;
     private Integer stock;
+
 }

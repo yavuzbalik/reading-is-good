@@ -1,7 +1,6 @@
 package com.deloitte.readingisgood.service.impl;
 
 import com.deloitte.readingisgood.dto.ServiceResponse;
-import com.deloitte.readingisgood.dto.StockDto;
 import com.deloitte.readingisgood.model.Stock;
 import com.deloitte.readingisgood.repository.StockRepository;
 import com.deloitte.readingisgood.service.StockService;
@@ -10,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,9 +23,30 @@ public class StockServiceImpl implements StockService {
     StockRepository stockRepository;
 
 
+//
+//    @Override
+//    public List<Stock> getAllStockOfBooks() {
+//        LOG.info("add book to stock started");
+//        List<Stock> allStocks = stockRepository.findAll();
+//        LOG.info("add book to stock finished "+allStocks);
+//        return allStocks;
+//    }
+//
+//    @Override
+//    public Stock getStockOfABook(String bookId) {
+//        LOG.info("add book to stock started");
+//        Stock res = stockRepository.findStockByBookId(bookId);
+//        LOG.info("add book to stock finished "+res);
+//        return res;
+//    }
 
     @Override
     public ServiceResponse getStockOfBooks() {
+        return null;
+    }
+
+    @Override
+    public ServiceResponse getStockOfBooks(String bookId) {
         return null;
     }
 
@@ -34,5 +56,19 @@ public class StockServiceImpl implements StockService {
         Stock res = stockRepository.save(stock);
         LOG.info("add book to stock finished "+res);
         return null;
+    }
+    @Override
+    public boolean updateStockByOrder(String bookId, Integer quantity){
+        Stock stock = stockRepository.findStockByBookId(bookId);
+        stock.setStock(stock.getStock()-quantity);
+        stockRepository.save(stock);
+
+        return true;
+
+    }
+    @Override
+    public boolean updateStockByPurchase(String bookId, Integer quantity){
+        return true;
+
     }
 }

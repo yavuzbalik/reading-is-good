@@ -23,7 +23,7 @@ public class Order {
     private String customerId;
     private List<BookOrder> books = new ArrayList<>();
     private OrderStatusEnum status;
-    private BigDecimal amount;
+    private Double amount;
     @CreatedDate
     private Date createdDate;
 }
