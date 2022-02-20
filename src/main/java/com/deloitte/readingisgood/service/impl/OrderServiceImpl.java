@@ -1,5 +1,7 @@
 package com.deloitte.readingisgood.service.impl;
 
+import com.deloitte.readingisgood.dto.OrderDto;
+import com.deloitte.readingisgood.dto.PageResponse;
 import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.enums.OrderStatusEnum;
 import com.deloitte.readingisgood.model.Book;
@@ -18,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,9 +52,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public ServiceResponse getOrdersByFilter(String orderId) {
-        Optional<Order> order = orderRepository.findById(orderId);
-        return new ServiceResponse(HttpStatus.OK,"get order returned",order);
+    public ServiceResponse getOrdersByFilter(LocalDate from, LocalDate to, Integer page, Integer size) {
+        int newSize = Integer.max(size, 0);
+        int newPage = Integer.max(page, 0);
+        PageResponse<OrderDto> pageableOrder = filterOrdersByDateRange(from, to, newPage, newSize);
+
+        return PageResponse.<OrderDto>builder()
+                .totalPages(pageableOrder.getTotalPages())
+                .totalContent(pageableOrder.getTotalContent())
+                .size(pageableOrder.getSize())
+                .page(pageableOrder.getPage())
+                .list(mapper.toListDTO(pageableOrder.getList()))
+                .build();
+
+        return new ServiceResponse(HttpStatus.OK,"get order returned",pageableOrder);
 
     }
 
