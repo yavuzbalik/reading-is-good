@@ -26,9 +26,6 @@ public class BookController {
     private static final Logger LOG = LoggerFactory.getLogger(BookController.class.getName());
 
     @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
     BookService bookService;
 
     @Autowired
@@ -44,16 +41,9 @@ public class BookController {
     }
 
     @PostMapping()
-    public ResponseEntity<ServiceResponse> addBook(@RequestBody BookDto bookDto){
+    public ResponseEntity<ServiceResponse> createBook(@RequestBody BookDto bookDto){
         LOG.info("add book started");
-
-        ServiceResponse response = bookService.createBook(modelMapper.map(bookDto, Book.class));
-        Book book = (Book) response.getResponse();
-
-        StockDto stockDto = new StockDto(book.getId(),bookDto.getQuantity());
-        Stock stock = modelMapper.map(stockDto,Stock.class);
-        ServiceResponse response1 = stockService.addBookToStock(stock);
-
+        ServiceResponse response = bookService.createBook(bookDto);
         LOG.info("add book returned");
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }

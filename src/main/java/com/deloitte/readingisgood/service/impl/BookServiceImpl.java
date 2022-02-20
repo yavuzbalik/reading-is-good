@@ -9,6 +9,7 @@ import com.deloitte.readingisgood.model.Stock;
 import com.deloitte.readingisgood.repository.BookRepository;
 import com.deloitte.readingisgood.repository.StockRepository;
 import com.deloitte.readingisgood.service.BookService;
+import com.deloitte.readingisgood.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -37,10 +38,18 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private StockService stockService;
+
     @Override
-    public ServiceResponse createBook(Book book) {
+    public ServiceResponse createBook(BookDto bookDto) {
         LOG.info("add book to db started");
+        Book book = modelMapper.map(bookDto,Book.class);
         Book response = bookRepository.save(book);
+
+        StockDto stockDto = new StockDto(response.getId(),bookDto.getStock());
+        Stock stock = modelMapper.map(stockDto,Stock.class);
+        ServiceResponse response1 = stockService.addBookToStock(stock);
         LOG.info("book added to db ");
 
         return new ServiceResponse(HttpStatus.OK,"book added",response);
@@ -53,4 +62,5 @@ public class BookServiceImpl implements BookService {
         LOG.info("get all books from db returned");
         return new ServiceResponse(HttpStatus.OK,"all books returned",allBooks);
     }
+
 }

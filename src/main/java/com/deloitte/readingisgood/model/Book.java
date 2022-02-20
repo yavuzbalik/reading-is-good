@@ -27,5 +27,4 @@ public class Book{
     private String author;
     private String description;
     private Double price;
-    @DBRef(lazy = true) Stock stocks;
 }

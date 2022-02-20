@@ -1,7 +1,9 @@
 package com.deloitte.readingisgood.exceptions;
 
+import lombok.Builder;
 import org.springframework.http.HttpStatus;
 
+@Builder
 public class CustomException extends RuntimeException {
 
   private static final long serialVersionUID = 1L;

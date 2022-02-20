@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class BookOrder {
     private Book book;
     private Integer quantity;
-    private boolean isAdded;
 }

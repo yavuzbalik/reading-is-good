@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookRepository extends MongoRepository<Book,Integer> {
+public interface BookRepository extends MongoRepository<Book,String> {
+    Book findBookById(String bookId);
 }

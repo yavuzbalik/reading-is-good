@@ -13,6 +13,6 @@ public class BookDto {
     private String title;
     private String author;
     private String description;
-    private BigDecimal price;
-    private Integer quantity;
+    private Double price;
+    private Integer stock;
 }

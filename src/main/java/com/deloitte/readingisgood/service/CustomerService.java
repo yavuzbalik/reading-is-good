@@ -6,7 +6,10 @@ import com.deloitte.readingisgood.dto.ServiceResponse;
 
 public interface CustomerService {
 
-    ServiceResponse addCustomer(CustomerDto customerDto);
+    ServiceResponse signup(CustomerDto customerDto);
+
+    ServiceResponse signin(String username, String password);
+
 
     ServiceResponse getCustomerOrders();
 }
