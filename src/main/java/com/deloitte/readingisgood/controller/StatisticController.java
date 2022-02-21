@@ -1,6 +1,5 @@
 package com.deloitte.readingisgood.controller;
 
-import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.dto.StatisticDto;
 import com.deloitte.readingisgood.service.StatisticService;
 import lombok.RequiredArgsConstructor;

@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 @Document(collection = "customers")
 @Data
@@ -20,6 +17,5 @@ public class Customer {
     @Indexed(unique = true)
     private String username;
     private String password;
-    private Role role;
 
 }

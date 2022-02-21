@@ -26,7 +26,6 @@ services:
     image: book-store-fe-service
     container_name: book-store-fe-service-app
     environment:
-    PORT: 3000
-    PROXY_API: http://localhost:8080/
+      PROXY_API: http://localhost:8080/
     ports:
       - 3000:3000

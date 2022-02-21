@@ -9,6 +9,5 @@ import java.util.List;
 @Getter
 @Setter
 public class OrderDto {
-    String customerId;
     List<BookOrder> books;
 }

@@ -1,25 +1,23 @@
 package com.deloitte.readingisgood.controller;
 
-import com.deloitte.readingisgood.dto.BookDto;
 import com.deloitte.readingisgood.dto.OrderDto;
 import com.deloitte.readingisgood.dto.ServiceResponse;
-import com.deloitte.readingisgood.dto.StockDto;
-import com.deloitte.readingisgood.model.Book;
+import com.deloitte.readingisgood.model.JwtUser;
 import com.deloitte.readingisgood.model.Order;
-import com.deloitte.readingisgood.model.Stock;
-import com.deloitte.readingisgood.repository.StockRepository;
 import com.deloitte.readingisgood.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.security.Principal;
 
 @RestController()
 @RequestMapping("/orders")
@@ -36,10 +34,11 @@ public class OrderController {
 
 
 
-    @GetMapping("/customer/{customerId}")
-    public ResponseEntity<ServiceResponse> getCustomerOrders(@PathVariable String customerId){
+    @GetMapping("/customer")
+    public ResponseEntity<ServiceResponse> getCustomerOrders(){
         LOG.info("get all books started");
-        ServiceResponse response = orderService.getCustomerOrders(customerId);
+
+        ServiceResponse response = orderService.getCustomerOrders();
         LOG.info("get all books returned");
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }

@@ -1,7 +1,6 @@
-package com.deloitte.readingisgood.security;
+package com.deloitte.readingisgood.filters;
 
-import com.deloitte.readingisgood.model.Customer;
-import com.deloitte.readingisgood.repository.CustomerRepository;
+import com.deloitte.readingisgood.service.CustomUserDetailsService;
 import com.deloitte.readingisgood.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,11 +24,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     JwtUtil jwtUtil;
 
     @Autowired
-    CustomerRepository userDetailsService;
+    CustomUserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        final String authorizationHeader =  request.getHeader("Authorization");
 
         String jwtToken = null;
         String username = null;
@@ -38,7 +36,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwtToken = bearerToken.substring(7, bearerToken.length());
             username = jwtUtil.extractUsername(jwtToken);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                Customer userDetails = userDetailsService.findByUsername(username);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 if (jwtUtil.validateToken(jwtToken, userDetails)) {
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

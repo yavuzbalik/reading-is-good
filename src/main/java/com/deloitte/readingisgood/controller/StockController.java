@@ -2,7 +2,6 @@ package com.deloitte.readingisgood.controller;
 
 import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.dto.StockDto;
-import com.deloitte.readingisgood.repository.StockRepository;
 import com.deloitte.readingisgood.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

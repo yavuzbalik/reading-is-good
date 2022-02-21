@@ -1,30 +1,20 @@
 package com.deloitte.readingisgood.service.impl;
 
-import com.deloitte.readingisgood.dto.OrderDto;
-import com.deloitte.readingisgood.dto.OrderFilterDto;
-import com.deloitte.readingisgood.dto.PageResponse;
 import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.enums.OrderStatusEnum;
-import com.deloitte.readingisgood.model.Book;
-import com.deloitte.readingisgood.model.BookOrder;
-import com.deloitte.readingisgood.model.Order;
-import com.deloitte.readingisgood.model.Stock;
-import com.deloitte.readingisgood.repository.BookRepository;
-import com.deloitte.readingisgood.repository.OrderRepository;
-import com.deloitte.readingisgood.repository.StockRepository;
+import com.deloitte.readingisgood.model.*;
+import com.deloitte.readingisgood.repository.*;
 import com.deloitte.readingisgood.service.OrderService;
 import com.deloitte.readingisgood.service.StockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +37,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private JwtUserRepository jwtUserRepository;
 
     @Override
     public ServiceResponse getOrderDetails(String orderId) {
@@ -71,7 +64,12 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
     @Override
-    public ServiceResponse getCustomerOrders(String customerId) {
+    public ServiceResponse getCustomerOrders() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String customerName = user.getUsername();
+        JwtUser user1 = jwtUserRepository.findUserByUsername(customerName);
+        String customerId = user1.getId();
+        System.out.println("customer id is "+customerId);
         List<Order> orders = orderRepository.findAllByCustomerId(customerId);
         return new ServiceResponse(HttpStatus.OK,"get customer all orders returned",orders);
     }
@@ -100,10 +98,14 @@ public class OrderServiceImpl implements OrderService {
         }
 
         if(bookList.size()>0){
-            order2.setCustomerId(order.getCustomerId());
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String customerName = user.getUsername();
+            JwtUser user1 = jwtUserRepository.findUserByUsername(customerName);
+            String customerId = user1.getId();
+            System.out.println("customer id is "+customerId);
+            order2.setCustomerId(customerId);
             order2.setStatus(OrderStatusEnum.IN_PROGRESS);
             order2.setBooks(bookList);
-            order2.setCustomerId(order.getCustomerId());
             Order order1 = orderRepository.save(order2);
             return new ServiceResponse(HttpStatus.OK,"order added",order1);
         }
