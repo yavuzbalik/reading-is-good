@@ -11,5 +11,4 @@ import java.util.List;
 public class CustomerDto {
     private String username;
     private String password;
-    private List<Role> roles;
 }

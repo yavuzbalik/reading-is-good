@@ -44,16 +44,16 @@ public class OrderController {
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<ServiceResponse> getOrdersByFilter(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-                                                             @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
-                                                             @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-                                                             @RequestParam(value = "size", required = false, defaultValue = "10") Integer size){
-        LOG.info("get all books started");
-        ServiceResponse response = orderService.getOrdersByFilter(from,to,page,size);
-        LOG.info("get all books returned");
-        return new ResponseEntity<ServiceResponse>(response,response.getStatus());
-    }
+//    @GetMapping("/filter")
+//    public ResponseEntity<ServiceResponse> getOrdersByFilter(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+//                                                             @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
+//                                                             @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+//                                                             @RequestParam(value = "size", required = false, defaultValue = "10") Integer size){
+//        LOG.info("get all books started");
+//        ServiceResponse response = orderService.getOrdersByFilter(from,to,page,size);
+//        LOG.info("get all books returned");
+//        return new ResponseEntity<ServiceResponse>(response,response.getStatus());
+//    }
 
     @GetMapping("/{orderId}")
     public ResponseEntity<ServiceResponse> getOrderDetails(@PathVariable String orderId){

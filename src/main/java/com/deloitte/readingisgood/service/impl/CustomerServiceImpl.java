@@ -8,6 +8,8 @@ import com.deloitte.readingisgood.model.Role;
 import com.deloitte.readingisgood.repository.CustomerRepository;
 import com.deloitte.readingisgood.security.JwtTokenProvider;
 import com.deloitte.readingisgood.service.CustomerService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +18,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.transform.OutputKeys;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,6 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private ModelMapper modelMapper;
+
 
 
 
@@ -60,7 +69,34 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ServiceResponse signin(String username, String password) {
-        return null;
+        final Customer user = customerRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User '" + username + "' not found");
+        }
+        String token = getJWTToken(username);
+        return new ServiceResponse(HttpStatus.OK,"",token);
+    }
+
+    private String getJWTToken(String username) {
+        String secretKey = "mySecretKey";
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .commaSeparatedStringToAuthorityList("ROLE_CUSTOMER");
+
+        String token = Jwts
+                .builder()
+                .setId("softtekJWT")
+                .setSubject(username)
+                .claim("authorities",
+                        grantedAuthorities.stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.toList()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .signWith(SignatureAlgorithm.HS512,
+                        secretKey.getBytes()).compact();
+
+        return "Bearer " + token;
     }
 
 

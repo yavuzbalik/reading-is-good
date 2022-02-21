@@ -33,13 +33,14 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController @RequestMapping(path = "api/public")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
 public class AuthApi {
 
     private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class.getName());
 
     private final AuthenticationManager authenticationManager;
-    private final CustomerService userService;
+
 
     @Autowired
     CustomerRepository customerRepository;
@@ -54,19 +55,28 @@ public class AuthApi {
     private JwtTokenProvider jwtTokenProvider;
 
     @CrossOrigin("*")
-    @PostMapping(path="/signin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ServiceResponse> login(@RequestBody CustomerDto userInfo) {
-        LOG.info("UserResource signin ");
-        String username = userInfo.getUsername();
-        String password = userInfo.getPassword();
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody CustomerDto loginRequest) {
 
-        ServiceResponse response = customerService.signin(username, password);;
+        System.out.println("username "+loginRequest.getUsername());
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsername(),
+                        loginRequest.getPassword()
+                )
+        );
 
-        return new ResponseEntity<ServiceResponse> (response, response.getStatus());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        CustomerDto userDetails = customerRepository.findByUsername(loginRequest.getUsername());
 
+        final String jwt = jwtUtil.generateToken(userDetails);
+        ServiceResponse response = new ServiceResponse(HttpStatus.OK,"login success",jwt);
+
+
+        return new ResponseEntity<ServiceResponse>(response.getStatus(),response);
     }
-
-    @PostMapping("register")
+    @CrossOrigin("*")
+    @PostMapping("/signup")
     public ResponseEntity<ServiceResponse> register(@RequestBody @Valid CustomerDto request) {
         LOG.info("signup calisti");
         ServiceResponse response = customerService.signup(request);

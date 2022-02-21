@@ -10,7 +10,7 @@ public interface OrderService {
 
     ServiceResponse getOrderDetails(String orderId);
 
-    ServiceResponse getOrdersByFilter(LocalDate from, LocalDate to, Integer page, Integer size);
+//    ServiceResponse getOrdersByFilter(LocalDate from, LocalDate to, Integer page, Integer size);
 
     ServiceResponse getCustomerOrders(String customerId);
 

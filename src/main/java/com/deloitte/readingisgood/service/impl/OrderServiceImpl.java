@@ -1,6 +1,7 @@
 package com.deloitte.readingisgood.service.impl;
 
 import com.deloitte.readingisgood.dto.OrderDto;
+import com.deloitte.readingisgood.dto.OrderFilterDto;
 import com.deloitte.readingisgood.dto.PageResponse;
 import com.deloitte.readingisgood.dto.ServiceResponse;
 import com.deloitte.readingisgood.enums.OrderStatusEnum;
@@ -16,6 +17,9 @@ import com.deloitte.readingisgood.service.StockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,23 +55,20 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    @Override
-    public ServiceResponse getOrdersByFilter(LocalDate from, LocalDate to, Integer page, Integer size) {
-        int newSize = Integer.max(size, 0);
-        int newPage = Integer.max(page, 0);
-        PageResponse<OrderDto> pageableOrder = filterOrdersByDateRange(from, to, newPage, newSize);
-
-        return PageResponse.<OrderDto>builder()
-                .totalPages(pageableOrder.getTotalPages())
-                .totalContent(pageableOrder.getTotalContent())
-                .size(pageableOrder.getSize())
-                .page(pageableOrder.getPage())
-                .list(mapper.toListDTO(pageableOrder.getList()))
-                .build();
-
-        return new ServiceResponse(HttpStatus.OK,"get order returned",pageableOrder);
-
-    }
+//    @Override
+//    public ServiceResponse getOrdersByFilter(LocalDate from, LocalDate to, Integer page, Integer size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//
+//        Page<Order> pageableOrder = orderRepository.findOrderByCreatedDateBetween(from, to, pageable);
+//
+//        return PageResponse.<OrderDto>builder()
+//                .totalPages(pageableOrder.getTotalPages())
+//                .totalContent(pageableOrder.getTotalContent())
+//                .size(pageableOrder.getSize())
+//                .page(pageableOrder.getPage())
+//                .list(mapper.toListDTO(pageableOrder.getList()))
+//                .build();
+//    }
 
     @Override
     public ServiceResponse getCustomerOrders(String customerId) {
