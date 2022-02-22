@@ -44,7 +44,6 @@ public class AuthController {
         return  "Nil here";
     }
 
-
     @CrossOrigin("*")
     @GetMapping("/checkUser")
     public String checkUser(){

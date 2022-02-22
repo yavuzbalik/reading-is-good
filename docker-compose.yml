@@ -21,7 +21,7 @@ services:
     restart: always
     depends_on:
       - mongo_db
-#
+
 #  frontendservice:
 #    image: book-store-fe-service
 #    container_name: book-store-fe-service-app

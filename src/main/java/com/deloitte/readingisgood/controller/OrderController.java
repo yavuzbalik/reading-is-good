@@ -54,7 +54,6 @@ public class OrderController {
 //        LOG.info("get all books returned");
 //        return new ResponseEntity<ServiceResponse>(response,response.getStatus());
 //    }
-
     @CrossOrigin("*")
     @GetMapping("/{orderId}")
     public ResponseEntity<ServiceResponse> getOrderDetails(@PathVariable String orderId){
