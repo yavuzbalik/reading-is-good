@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController()
+@CrossOrigin("*")
 @RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
@@ -33,7 +34,7 @@ public class OrderController {
     private OrderService orderService;
 
 
-
+    @CrossOrigin("*")
     @GetMapping("/customer")
     public ResponseEntity<ServiceResponse> getCustomerOrders(){
         LOG.info("get all books started");
@@ -53,7 +54,7 @@ public class OrderController {
 //        LOG.info("get all books returned");
 //        return new ResponseEntity<ServiceResponse>(response,response.getStatus());
 //    }
-
+@CrossOrigin("*")
     @GetMapping("/{orderId}")
     public ResponseEntity<ServiceResponse> getOrderDetails(@PathVariable String orderId){
         LOG.info("get order details started");
@@ -61,7 +62,7 @@ public class OrderController {
         LOG.info("get order details returned");
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }
-
+    @CrossOrigin("*")
     @PostMapping()
     public ResponseEntity<ServiceResponse> createOrder(@RequestBody OrderDto orderDto){
         LOG.info("create order started");

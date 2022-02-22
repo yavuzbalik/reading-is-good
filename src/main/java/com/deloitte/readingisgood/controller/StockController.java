@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
+@CrossOrigin("*")
 @RequestMapping("/stocks")
 @RequiredArgsConstructor
 public class StockController {
@@ -20,6 +21,7 @@ public class StockController {
     @Autowired
     StockService stockService;
 
+    @CrossOrigin("*")
     @GetMapping()
     public ResponseEntity<ServiceResponse> getAllStocks(){
         LOG.info("get all stocks started");
@@ -27,7 +29,7 @@ public class StockController {
         LOG.info("get all stocks returned");
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }
-
+    @CrossOrigin("*")
     @PutMapping("/update")
     public ResponseEntity<ServiceResponse> updateStocks(@RequestBody StockDto stockDto){
         LOG.info("update stocks started");

@@ -14,10 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -39,20 +36,21 @@ public class AuthController {
     @Autowired
     JwtUserRepository userRepository;
 
+    @CrossOrigin("*")
     @GetMapping("/hello")
     public String hello()
     {
         return  "Nil here";
     }
 
-
+    @CrossOrigin("*")
     @GetMapping("/checkUser")
     public String checkUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         return  currentPrincipalName;
     }
-
+    @CrossOrigin("*")
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
         Authentication authenticate = authenticationManager.authenticate(
@@ -66,7 +64,7 @@ public class AuthController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
 
     }
-
+    @CrossOrigin("*")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -84,7 +82,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
-
+    @CrossOrigin("*")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 

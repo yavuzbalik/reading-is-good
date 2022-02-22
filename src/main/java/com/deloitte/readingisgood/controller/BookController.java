@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController()
+@CrossOrigin("*")
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
@@ -25,7 +26,7 @@ public class BookController {
     @Autowired
     StockService stockService;
 
-
+    @CrossOrigin("*")
     @GetMapping()
     public ResponseEntity<ServiceResponse> getAllBooks(){
         LOG.info("get all books started");
@@ -33,7 +34,7 @@ public class BookController {
         LOG.info("get all books returned");
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }
-
+    @CrossOrigin("*")
     @PostMapping()
     public ResponseEntity<ServiceResponse> createBook(@RequestBody BookDto bookDto){
         LOG.info("add book started");
