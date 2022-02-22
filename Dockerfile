@@ -1,5 +1,5 @@
 FROM openjdk:11 as DeloitteCaseStudy
-EXPOSE 8081
+EXPOSE 8080
 WORKDIR /app
 
 # Copy maven executable to the image

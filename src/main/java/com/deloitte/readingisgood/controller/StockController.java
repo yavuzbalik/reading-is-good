@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/stocks")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
 public class StockController {
 
@@ -20,6 +21,7 @@ public class StockController {
     @Autowired
     StockService stockService;
 
+    @CrossOrigin("*")
     @GetMapping()
     public ResponseEntity<ServiceResponse> getAllStocks(){
         LOG.info("get all stocks started");
@@ -28,6 +30,7 @@ public class StockController {
         return new ResponseEntity<ServiceResponse>(response,response.getStatus());
     }
 
+    @CrossOrigin("*")
     @PutMapping("/update")
     public ResponseEntity<ServiceResponse> updateStocks(@RequestBody StockDto stockDto){
         LOG.info("update stocks started");

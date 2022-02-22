@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@RestController("AuthController")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthController {
 
     @Autowired
@@ -36,6 +37,7 @@ public class AuthController {
     @Autowired
     JwtUserRepository userRepository;
 
+    @CrossOrigin("*")
     @GetMapping("/hello")
     public String hello()
     {
@@ -43,6 +45,7 @@ public class AuthController {
     }
 
 
+    @CrossOrigin("*")
     @GetMapping("/checkUser")
     public String checkUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -50,6 +53,7 @@ public class AuthController {
         return  currentPrincipalName;
     }
 
+    @CrossOrigin("*")
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
         Authentication authenticate = authenticationManager.authenticate(
