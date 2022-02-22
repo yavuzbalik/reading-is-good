@@ -88,7 +88,7 @@ public class AuthController {
 
 
         if(userRepository.findUserByUsername(signUpRequest.getUsername()) != null) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+            return new ResponseEntity(new ApiResponse(false, "username already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
