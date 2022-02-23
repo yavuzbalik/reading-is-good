@@ -1,0 +1,12 @@
+@import "../../../base"; 
+
+.logout-button {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  .logout-icon {
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+  }
+}

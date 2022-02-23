@@ -1,0 +1,71 @@
+@import "../../../base"; 
+
+
+.add-item-container {
+  @include flex(flex, center, center, row);
+  width: 272px;
+  border-radius: 3px;
+  padding: 15px;
+  margin: 0px 4px;
+  cursor: pointer;
+
+}
+
+.trash-icon {
+  color: $deloitte_primary_color;
+  cursor: pointer;
+  font-size: 17px;
+  margin-left: 10px;
+}
+
+.item-title-container {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.item-title-input {
+  background-color: #ebecf0;
+  border: none;
+  text-align: center;
+  margin: 0px;
+  box-shadow: 0 0 0 2px $deloitte_primary_color;
+  background-color: #fff;
+  text-align: start;
+  padding-left: 5px;
+  font-size: 18px;
+  border-radius: 4px;
+  &:focus, &:hover {
+    border-color: $deloitte_primary_color;
+  }
+}
+
+.category-button {
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 150px;
+  background-color: $deloitte_primary_color;
+  color: #e6e6e6;
+  padding: 10px;
+    &:hover {
+      background-color: #e6e6e6;
+      color: $deloitte_primary_color;
+  }
+} 
+
+.open-new-item {
+  @include flex(flex, center, center);
+  color: "#5e6c84"
+}
+
+.open-new-item-title {
+  margin-left: 10px;
+}
+
+.item-title-button-container {
+  @include flex(flex, center, flex-start);
+  margin-top: 10px;
+
+}

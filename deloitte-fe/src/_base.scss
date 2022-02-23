@@ -1,0 +1,132 @@
+$font-stack: 'Source Sans Pro', sans-serif;
+$font-style: italic;
+$font-style-normal: normal;
+$font-weight-700: 700;
+$font-weight-600: 600;
+$font-weight-400: 400;
+$font-weight-300: 300;
+$font-weight: 600;
+$padding: 0px 100px;
+$breakpoint-mobile: 378px;
+
+//Colors
+$primary-color: #FFFFFF;
+$deloitte_primary_color: #4c3398;
+$header-actual-color:#000;
+
+$header-general-width: 100%;
+$align-center: center;
+
+@mixin flex($flex: flex, $align-items: flex-start, $justify-content: flex-start, $flex-direction: row) {
+    display: $flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-direction: $flex-direction;
+ }
+
+ @mixin width-hight($width, $height) {
+    width: $width;
+    height: $height;
+ }
+ 
+
+ @mixin position($position) {
+    position: $position;
+ }
+
+ @mixin none($display) {
+    display: $display;
+ }
+
+ @function pad($pads...) {
+    @return $pads;
+}
+
+@function margin($margins...) {
+    @return $margins;
+}
+
+$font-stack: 'Source Sans Pro', sans-serif;
+$font-style: italic;
+$font-style-normal: normal;
+$font-weight-700: 700;
+$font-weight-600: 600;
+$font-weight-400: 400;
+$font-weight-300: 300;
+$font-weight: 600;
+$padding: 20px 200px;
+$breakpoint-mobile: 378px;
+
+//Colors
+$primary-color: #FFFFFF;
+$blue-active-color: #044DC3;
+$header-bg-color: #FFFFFF;
+$header-actual-color:#000;
+$header-color: #FFFFFF;
+$search-color: #555555;
+$search-active-color: #51B549;
+$footer-bg-color: #F2F2F2;
+$bar-active-color: #FFCE00;
+$bar-active-bcolor: #D01D32;
+$grey-color: #707070;
+$search-icon-color: #F7F7F7;
+$button-border-color: #EDF1F2;
+$basket-icon-color: #FF5B4D;
+$basket-popover-color: #F54257;
+$order-icon-color: #FF5B4D;
+$order-popover-color: #F54257;
+$discount-button: #E64E41;
+$breadcrumb-color: #6c757d;
+$category-button-border: #E2E7E9;
+$footer-divider: #9B9B9B;
+$footer-copywrite-color: #E6E6E6;
+
+$header-general-width: 100%;
+$align-center: center;
+
+@mixin flex($flex: flex, $align-items: flex-start, $justify-content: flex-start, $flex-direction: row) {
+    display: $flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-direction: $flex-direction;
+ }
+
+ @mixin width-hight($width, $height) {
+    width: $width;
+    height: $height;
+ }
+ 
+
+ @mixin position($position) {
+    position: $position;
+ }
+
+ @mixin none($display) {
+    display: $display;
+ }
+
+ @function pad($pads...) {
+    @return $pads;
+}
+
+@function margin($margins...) {
+    @return $margins;
+}
+
+@mixin header-logo {
+    max-width: 163px;
+    height: 32px;
+    width: 100%;
+ }
+
+ @mixin basket-icon {
+    max-width: 163px;
+    height: 32px;
+    width: 100%;
+ }
+
+ @mixin order-icon {
+   max-width: 163px;
+   height: 32px;
+   width: 100%;
+}

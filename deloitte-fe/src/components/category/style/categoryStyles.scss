@@ -1,0 +1,116 @@
+@import "../../../base"; 
+
+.category-list-container {
+  width: 272px;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 0px 4px;
+  background-color: #ebecf0;
+  @include flex(flex, center, center, column);
+}
+
+::-webkit-scrollbar {
+  width: 0;  
+  background: transparent;
+}
+
+
+.category-title-container {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.category-title-input {
+  background-color: #ebecf0;
+  border: none;
+  margin: 0px;
+  padding-left: 10px;
+  &:focus, &:hover {
+    background-color: #fff;
+  }
+}
+
+.loader-card {
+  display: none(inline-block);
+  width: 20px;
+  height: 20px;
+  outline: none;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  right: 10px;
+  bottom: 50%;
+  border-right: solid 5px $deloitte_primary_color;
+  border-bottom: solid 5px transparent;
+  animation: loader-card 2s linear infinite;
+  -webkit-animation: loader-card 1s linear infinite;
+}
+
+@keyframes loader-card {
+to {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+}
+}
+
+@-webkit-keyframes loader-card {
+to {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+}
+
+.trash-icon {
+  color: $deloitte_primary_color;
+  cursor: pointer;
+  font-size: 17px;
+  margin-left: 10px;
+}
+
+.item-modal-container {
+  @include flex(flex, flex-start, center, column);
+}
+
+.item-modal-container-item {
+  @include flex(flex, center, space-between);
+  width: 100%;
+}
+
+.item-modal-container-item-remove {
+  margin-right: 3%;
+}
+
+.item-modal-container-status {
+  @include flex(flex, center);
+  width: 100%;
+  margin-top: 15px;
+}
+
+.item-modal-container-select-container {
+  width: 50%;
+  margin-left: 15px;
+}
+
+.item-modal-container-select{
+  margin-left: 10px;
+}
+
+.item-modal-container-move {
+  @include flex(flex, center);
+  width: 100%;
+  margin-top: 15px;
+}
+
+.item-modal-container-move-select-container {
+  width: 50%;
+  margin-left: 15px;
+}
+
+.item-modal-container-move-select {
+  margin-left: 10px;
+}

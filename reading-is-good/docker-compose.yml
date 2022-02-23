@@ -26,7 +26,7 @@ services:
     image: book-store-fe-service
     container_name: book-store-fe-service-app
     build:
-      context: ./deloitte-fe
+      context: ./deloitte-fe.
       dockerfile: Dockerfile
     environment:
       PROXY_API: http://localhost:8080/

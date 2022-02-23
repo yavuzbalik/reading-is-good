@@ -1,0 +1,56 @@
+@import "../../../_base"; 
+
+.search-container {
+    border: 2px solid $button-border-color;
+    border-radius: 28px;
+    background: $search-icon-color;
+    padding: pad(10px);
+    @include width-hight(100%, 50px);
+    max-width: 870px;
+    margin: margin(0px 0px 0px 20px);
+    color: $search-color;
+    @include flex(flex, center, space-between);
+    .search-container-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+        .search-icon-button {
+            background-color: $search-icon-color;
+            border: none;
+            color: $search-color
+        }
+        .search-input {
+            margin: inherit;
+            border: none;
+            background-color: $search-icon-color;
+            outline: none;
+            font-weight: $font-weight-400;
+        }
+    }
+    .search-button {
+        background-color: $search-active-color;
+        border: 2px solid $button-border-color;
+        border-radius: 28px;
+        color: $primary-color;
+        padding: pad(5px 10px);
+        max-width: 66px;
+        width: 100%;
+        &.disable {
+            background-color: grey !important; 
+        }
+    }
+    
+}
+
+@media (max-width: $breakpoint-mobile) {
+
+  .display {
+    display: none;
+  }
+  .search-input  {
+    @extend .display;
+  }
+  .search-container {
+    @extend .display;
+  }
+}

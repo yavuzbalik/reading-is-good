@@ -1,0 +1,24 @@
+@import "../../../../_base"; 
+
+.header {
+  padding: $padding;
+  background: $header-actual-color;
+  color: $header-actual-color;
+  @include flex(flex, center, space-between);
+
+  .header-right {
+    @include flex(flex);
+    width: $header-general-width;
+
+      .logo {
+        @include header-logo;
+        margin: margin(10px)
+      }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .header {
+    padding: pad(10px)
+  }
+}

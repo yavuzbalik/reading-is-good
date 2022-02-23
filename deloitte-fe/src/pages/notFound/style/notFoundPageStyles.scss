@@ -1,0 +1,11 @@
+@import "../../../_base"; 
+
+.not-found-container {
+  @include flex(flex, center, center);
+}
+
+.not-found-image {
+  height: auto;
+  max-width: 500px;
+  width: 100%;
+}

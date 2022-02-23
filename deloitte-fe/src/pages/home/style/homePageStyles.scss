@@ -1,0 +1,90 @@
+@import "../../../_base"; 
+
+.categories {
+    @include flex(flex);
+    margin: margin(5px 0px);
+    flex-wrap: wrap;
+    .categories-button {
+        margin: margin(5px 19px 5px 0px);
+        max-width: 195px;
+        @include width-hight(100%, null);
+        .category-button {
+            background-color: $primary-color;
+            border-radius: 10px;
+            color: $grey-color;
+            padding: pad(10px);
+            @include width-hight(195px, null);
+            border: 1px solid $category-button-border;
+        }
+        
+        .activeted {
+            background-color: $blue-active-color !important;
+            color: $primary-color !important;
+            border: none;
+        }
+        
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent;
+}
+
+
+.divider {
+    border: 2px solid $button-border-color;
+    @include width-hight(100%, 1px);
+}
+
+.discount-container{
+    @include width-hight(100%, null);
+    margin: (30px 0px 0px 0px);
+    @include flex(flex, center, center);
+}
+
+.product-container {
+    @include flex(flex, null, null, null);
+    flex-wrap: wrap;
+    margin: margin(10px 0px);
+}
+
+
+.logo-category {
+    @include width-hight(17px, 16px);
+}
+
+.logo-category-text {
+    margin: margin(0px 0px 0px 5px);
+    letter-spacing: 0px;
+    color: $blue-active-color;
+}
+
+.logo-selected-category {
+    @include width-hight(22px, 17px);
+}
+
+.logo-selected-category-text {
+    margin: margin(0px 0px 0px 5px);
+    letter-spacing: 0px;
+    color: $grey-color;
+}
+
+
+@media (max-width: $breakpoint-mobile) {
+.discount-container {
+    flex-direction: column;
+  }
+.categories {
+    flex-wrap: nowrap;
+    overflow: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.product-container {
+    flex-wrap: nowrap;
+    overflow: scroll;
+}
+}

@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "aad40836-9c23-430c-8534-ec08e0faaef8",
+		"name": "deloitte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"yavuz\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXZ1eiIsImV4cCI6MTY0NTU3MDE1NywiaWF0IjoxNjQ1NTM0MTU3fQ.tMnoMkVruvyzV8RRSAxD0I_SESkGRXItswHxDDDelcw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/books",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"yavuz3\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/stocks/update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXZ1ejMiLCJleHAiOjE2NDU1NTgzODYsImlhdCI6MTY0NTUyMjM4Nn0.KtlnYBH_G8nSfDUOtrN7eB_BPb3TGjPwjtpl85he3H4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\":\"6213e5dcb2b2722719c01e0b\",\n    \"stock\":7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/stocks/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stocks",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8082/orders/customer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXZ1eiIsImV4cCI6MTY0NTUwNzA2MywiaWF0IjoxNjQ1NDcxMDYzfQ.pLxZz3qAKeH8kIiPzinNPC8E2tSORAtSN8S6qzg_vzQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerId\":\"621263e7661e4c50ef371c3f\",\n    \"books\":[\n    {\n        \"book\": {\"id\":\"62128579ecd1ce21be929a20\"},\n\n        \"quantity\": 1\n    }\n]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/orders/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"orders",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/orders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXZ1eiIsImV4cCI6MTY0NTUwNzA2MywiaWF0IjoxNjQ1NDcxMDYzfQ.pLxZz3qAKeH8kIiPzinNPC8E2tSORAtSN8S6qzg_vzQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"books\":[\n    {\n        \"book\": {\"id\":\"62128579ecd1ce21be929a20\"},\n\n        \"quantity\": 2\n    },\n    {\n        \"book\":{\"id\":\"6213e37054974b3e8c4bcc3c\"},\n\n        \"quantity\":\"1\"\n    }\n]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/books",
+			"protocolProfileBehavior": {
+				"followRedirects": false,
+				"strictSSL": false,
+				"disableUrlEncoding": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2QiLCJleHAiOjE2NDU1ODkzNjMsImlhdCI6MTY0NTU1MzM2M30.UtWAvmg-UWv9hoaDQ7syOEbf3hHEK9ynsUjBLB688Ps",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"Gece Yarısı Kütüphanesi\",\n    \"author\":\"Matt Haig\",\n    \"posterUrl\":\"https://i.dr.com.tr/cache/500x400-0/originals/0001922926001-1.jpg\",\n    \"description\":\"“Yaşamla ölüm arasında bir kütüphane var,” dedi. “Bu kütüphanedeki raflar sonsuza kadar gider.  Her kitap yaşamış olabileceğin başka bir hayatı yaşama şansını sunar sana. Farklı seçimler yapmış olsan, şu an nasıl bir hayatın olacağını görürsün…\",\n    \"price\":33.80,\n    \"stock\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/books",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/orders/filter/?from=2022-02-10&to=2022-02-23&page=1&size=5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXZ1eiIsImV4cCI6MTY0NTY3NTQ1NywiaWF0IjoxNjQ1NjM5NDU3fQ.9TaN4QKSgkkoxUSLN1aCqLWp9ziXwS_NIrzKwRRVinI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/orders/filter/?from=2022-02-10&to=2022-02-23&page=1&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"filter",
+						""
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2022-02-10"
+						},
+						{
+							"key": "to",
+							"value": "2022-02-23"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

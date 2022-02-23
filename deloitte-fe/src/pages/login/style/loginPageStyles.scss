@@ -1,0 +1,107 @@
+@import "../../../_base"; 
+
+.login-container {
+    @include flex(flex, center, center, column);
+    @include width-hight(100%, 100vh);
+    padding: pad(30px 0);
+    background: $primary-color;
+    background-image: url("../../../assets/images/bg.png");
+    .login {
+      @include flex(flex, center, center, column);
+      padding: pad(25px);
+      border: 2px solid #f9f4f4;
+      min-width: 375px;
+      background-color: #fff7f7;
+      border-radius: 20px;
+      .deloitte-icon {
+        @include width-hight(80px, 80px);
+      }
+      .help-block {
+        font-size: 15px;
+        color: red;
+        margin-bottom: 10px;
+        text-align: center;
+        display: block;
+        border: 2px solid red;
+        padding: pad(15px);
+      }
+      .login-button {
+        border: 1px solid #e6e6e6;
+        border-radius: 22px;
+        width: 100%;
+        background-color: $deloitte_primary_color;
+        color: #e6e6e6;
+        padding: 10px;
+          &:hover {
+            background-color: #e6e6e6;
+            color: $deloitte_primary_color;
+        }
+        .loadingSpinner {
+          border: 4px solid #E8F0FE;
+          border-top-color: rgba(0, 0, 0, 0);
+          border-left-color: rgba(0, 0, 0, 0);
+          width: 20px;
+          height: 20px;
+          opacity: 0.8;
+          border-radius: 50%;
+          animation: loadingSpinner 0.7s infinite linear;
+          -webkit-animation: loadingSpinner 0.7s infinite linear;
+        }
+      
+        @keyframes loadingSpinner {
+          from { transform: rotate(0deg)   }
+          to   { transform: rotate(360deg) }
+        }
+      
+        @-webkit-keyframes loadingSpinner {
+          from { -webkit-transform: rotate(0deg)   }
+          to   { -webkit-transform: rotate(360deg) }
+        }
+      }
+      .login-text-button {
+        border: none;
+        color: $deloitte_primary_color;
+        background: inherit;
+        margin: 10px;
+        width: 100%;
+        font-size: 18px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  .login h1 {
+    color: #000000;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 35px;
+    margin-left: 10px;
+  }
+  
+  input {
+    padding: 2px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  input:focus:active {
+    box-shadow: inset 0 -5px 45px $primary-color,
+      0 1px 1px $primary-color;
+  }
+
+  label {
+    font-size: 18px;
+    color: #7A7A7A;
+  }
+  
+ 
+ 
+
+  
+
